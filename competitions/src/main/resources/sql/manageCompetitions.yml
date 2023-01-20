@@ -1,0 +1,4 @@
+manage-competitions:
+ fetchUpcomingCompetitionsDetails: SELECT id,name,mode,start_date,end_date,active_flg FROM competitions WHERE start_date>curdate();
+ totalCompetitionsCandidateParticipatedIn: SELECT COUNT(id) FROM candidate_competition_mapping WHERE candidate_id=:candidateId;
+ totalCompetitionsCandidateScoredMoreThan60Percent: SELECT COUNT(id) FROM candidate_competition_mapping WHERE candidate_id=:candidateId AND (marks/100)*100 > 60;
