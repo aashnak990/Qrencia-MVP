@@ -1,0 +1,5 @@
+manage-training-course:
+ fetchUpcomingTrainingCourseDetails: SELECT id,name,mode,start_date,end_date,active_flg FROM training_courses WHERE start_date>curdate();
+ totalTrainingsCandidateParticipatedIn: SELECT COUNT(id) FROM candidate_training_mapping WHERE candidate_id=:candidateId;
+ totalOngoingTrainings: SELECT COUNT(t.id) FROM training_courses as t INNER JOIN candidate_training_mapping as c on t.id=c.training_id WHERE ((t.start_date=curdate()) or (t.start_date<curdate() AND t.end_date>=curdate())) AND c.candidate_id=:candidateId;
+ submitFeedback: INSERT INTO feedback (comment,user_id,work_id) VALUES (:comment, :userId, :workId);
